@@ -1,0 +1,3 @@
+class Heroine{
+    int number;
+};
