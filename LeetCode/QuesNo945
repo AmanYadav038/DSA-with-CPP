@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int minIncrementForUnique(vector<int>& nums) {
+        sort(nums.begin(),nums.end());//sort the arr
+        int cnt=0;//take a conut to return as answer at last
+        vector <int> res;//for keeping the track
+        res.push_back(nums[0]);//entering the first element in res vector
+        for (int i=1;i<nums.size();i++){
+            int num=nums[i];
+            while(num<=res.back()){//condition for incrementing cnt as required
+                num+=1;
+                cnt++;
+            }
+            res.push_back(num);//pushing the current element to keeping the track
+        }
+        return cnt;//return the answer
+    }
+};
+
+//
+
+//other solution 
+int minIncrementForUnique(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        int cnt=0;
+        for (int i=1;i<nums.size();i++){
+            if(nums[i]<=nums[i-1]){
+                cnt+=abs(nums[i]-nums[i-1])+1;
+                nums[i]=nums[i-1]+1;
+            }
+        }
+        return cnt;
+    }
